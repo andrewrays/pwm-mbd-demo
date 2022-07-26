@@ -23,6 +23,9 @@
 # Matlab code generation folders
 **/codegen/
 
+# HDL Coder files
+**/hdlsrc
+
 # Simulink autosave extension
 *.autosave
 
