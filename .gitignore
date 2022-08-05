@@ -21,10 +21,7 @@
 **/sccprj/
 
 # Matlab code generation folders
-**/codegen/
-
-# HDL Coder files
-**/hdlsrc
+**/work/
 
 # Simulink autosave extension
 *.autosave
