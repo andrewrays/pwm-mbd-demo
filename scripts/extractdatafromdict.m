@@ -1,4 +1,6 @@
 function Data = extractdatafromdict()
+load_system pwm_generator
+
 dictionaryObj = Simulink.data.dictionary.open('mainDictionary.sldd');
 
 dataSectionObj = getSection(dictionaryObj,'Design Data');
