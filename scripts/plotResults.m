@@ -17,29 +17,56 @@ PWM1 = f255075t(:,3);
 PWM2 = f255075t(:,4);
 PWM3 = f255075t(:,5);
 
+%%
+load f_25_50_75_sim.mat
+
+SynchSim = simOut{1}.Values;
+PWM1Sim  = simOut{2}.Values;
+PWM2Sim  = simOut{3}.Values;
+PWM3Sim  = simOut{4}.Values;
 
 %%
-figure(Color = [1 1 1], Position = [100 100 800 503], ...
+figure(Color = [1 1 1], Units = "centimeters", Position = [10 10 15 9], ...
     PaperPositionMode = 'auto')
 
 hold on
-plot(Time, Synch + 12.5, Color = "yellow", LineWidth = 1);
-plot(Time, PWM1 + 5, Color = "green", LineWidth = 1);
-plot(Time, PWM2 - 5, Color = "blue", LineWidth = 1);
-plot(Time, PWM3 - 15, Color = "magenta", LineWidth = 1);
+plot(Time, Synch + 12.85, Color = "yellow", LineWidth = 3);
+plot(Time, PWM1 + 5.22, Color = "green", LineWidth = 3);
+plot(Time, PWM2 - 5, Color = "cyan", LineWidth = 3);
+plot(Time, PWM3 - 15, Color = "red", LineWidth = 3);
+
+plot(SynchSim.Time - 8.06e-5, 5*SynchSim.Data + 12.5, ...
+    LineWidth = 1.3, Color = "black")
+plot(PWM1Sim.Time - 8.06e-5, 5*PWM1Sim.Data + 5, ...
+    LineWidth = 1.3, Color = "black")
+plot(PWM2Sim.Time - 8.06e-5, 5*PWM2Sim.Data - 5, ...
+    LineWidth = 1.3, Color = "black")
+plot(PWM3Sim.Time - 8.06e-5, 5*PWM3Sim.Data - 15, ...
+    LineWidth = 1.3, Color = "black")
 hold off
 
-text(Time(1) - 0.3e-5, 12.5, '$$S$$', ...
+text(Time(end) + 0.1e-5, 12.5, '$$S$$', ...
     Interpreter = 'latex', FontSize = 12);
-text(Time(1) - 1.6e-5, 5, '$$P_{1}\;(\gamma = 0.25)$$', ...
+text(Time(end) + 0.1e-5, 5, '$$P_{1}$$', ...
     Interpreter = 'latex', FontSize = 12);
-text(Time(1) - 1.6e-5, -5, '$$P_{2}\;(\gamma = 0.5)$$', ...
+text(Time(end) + 0.1e-5, -5, '$$P_{2}$$', ...
     Interpreter = 'latex', FontSize = 12);
-text(Time(1) - 1.6e-5, -15, '$$P_{3}\;(\gamma = 0.75)$$', ...
+text(Time(end) + 0.1e-5, -15, '$$P_{3}$$', ...
+    Interpreter = 'latex', FontSize = 12);
+
+text(Time(end) + 0.1e-5, 5 + 2.5, '$$\gamma = 0.25$$', ...
+    Interpreter = 'latex', FontSize = 12);
+text(Time(end) + 0.1e-5, -5 + 2.5, '$$\gamma = 0.5$$', ...
+    Interpreter = 'latex', FontSize = 12);
+text(Time(end) + 0.1e-5, -15 + 2.5, '$$\gamma = 0.75$$', ...
+    Interpreter = 'latex', FontSize = 12);
+
+text(Time(end) + 0.4e-5, -22.1, 'Time ($$\mu$$s)', ...
     Interpreter = 'latex', FontSize = 12);
 
 ax = gca;
-% ax.InnerPosition = [0 0 800 503];
+ax.Units = "centimeters";
+ax.InnerPosition = [0.3 1 12 7.52];
 box on
 ax.FontSize = 12;
 ax.TickLabelInterpreter = 'latex';
@@ -49,10 +76,9 @@ ax.YLim = [-20 20];
 ax.XGrid = 'on';
 ax.YGrid = 'on';
 ax.XTick = (-5:5)*1e-5;
-ax.XTickLabel = 0:11;
+ax.XTickLabel = 0:10:100;
 ax.YTickLabel = [];
 
 % image size = 800x503 pixels
 
-%%
-print 'f_25_50_75_m' '-dpng' '-r300'
+print '..\pwm-mbd-demo\data\simulation\f_25_50_75_m' '-dpng' '-r300'

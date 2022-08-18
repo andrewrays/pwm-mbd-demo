@@ -5,6 +5,10 @@ load_system(ModelName);
 
 sltest.harness.load(ModelName, HarnessName);
 
+if ~exist(Directory, 'dir')
+    mkdir('..\pwm-mbd-demo\work\', Directory);
+end
+
 result = checkhdl(HarnessName + "/DUT", ...
-     TargetDirectory = "C:\Users\andre\Documents\GitHub\pwm-mbd-demo\work\" + Directory);
+     TargetDirectory = "..\pwm-mbd-demo\work\" + Directory);
 end
