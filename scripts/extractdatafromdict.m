@@ -1,5 +1,5 @@
 function Data = extractdatafromdict()
-load_system pwm_generator
+load_system pwm_generator_harness
 
 dictionaryObj = Simulink.data.dictionary.open('mainDictionary.sldd');
 
@@ -11,6 +11,6 @@ Data.PAUSE_PRD   = getValue(getEntry(dataSectionObj,'PAUSE_PRD')).Value;
 Data.REPEATS_PRD = getValue(getEntry(dataSectionObj,'REPEATS_PRD')).Value;
 Data.SIZE        = getValue(getEntry(dataSectionObj,'SIZE')).Value;
 Data.PWM_FREQ    = getValue(getEntry(dataSectionObj,'PWM_FREQ')).Value;
-Data.TYPE        = get_param('pwm_generator/counters/PWM_TYPE', 'Value');
+Data.TYPE        = get_param('pwm_generator_harness/DUT/counters/PWM_TYPE', 'Value');
 
 end
