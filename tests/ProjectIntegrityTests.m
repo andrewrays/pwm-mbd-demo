@@ -26,29 +26,45 @@ classdef ProjectIntegrityTests < matlab.unittest.TestCase
         end
 
         function testModelFolderContent(testCase)
-            folderContentList = dir(fullfile('models', '*.*'));
+            folderContentList = what('..\pwm-mbd-demo\models');
 
-            necessaryContent = cell(1,length(folderContentList)-2);
+            contentNecessary = logical([0 1 1 1 1 1 1 0 1 1 1 1])';
 
-            for i = 3:length(folderContentList)
-                necessaryContent{i-2} = folderContentList(i).name;
-            end
-            
-            contentActual = all(cellfun(@(x) contains(x,'.slx'), necessaryContent));
+            contentActual = structfun(@(x) isempty(x), folderContentList);
 
-            testCase.verifyEqual(contentActual,true);
+            testCase.verifyEqual(contentActual,contentNecessary);
+        end
+        
+        function testScriptsFolderContent(testCase)
+            folderContentList = what('..\pwm-mbd-demo\scripts');
+
+            contentNecessary = logical([0 0 1 1 1 1 1 1 1 1 1 1])';
+
+            contentActual = structfun(@(x) isempty(x), folderContentList);
+
+            testCase.verifyEqual(contentActual,contentNecessary); 
+        end
+        
+        function testUtilitiesFolderContent(testCase)
+            folderContentList = what('..\pwm-mbd-demo\utilities');
+
+            contentNecessary = logical([0 0 1 1 1 1 1 1 1 1 1 1])';
+
+            contentActual = structfun(@(x) isempty(x), folderContentList);
+
+            testCase.verifyEqual(contentActual,contentNecessary); 
         end
 
         function testDictionariesFolderContent(testCase)
             folderContentList = dir(fullfile('dictionaries', '*.*'));
 
-            necessaryContent = cell(1,length(folderContentList)-2);
+            contentNecessary = cell(1,length(folderContentList)-2);
 
             for i = 3:length(folderContentList)
-                necessaryContent{i-2} = folderContentList(i).name;
+                contentNecessary{i-2} = folderContentList(i).name;
             end
             
-            contentActual = all(cellfun(@(x) contains(x,'.sldd'), necessaryContent));
+            contentActual = all(cellfun(@(x) contains(x,'.sldd'), contentNecessary));
 
             testCase.verifyEqual(contentActual,true);
         end
