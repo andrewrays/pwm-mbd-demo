@@ -61,3 +61,15 @@ To observe PWM and synchronization signals, four digital outputs are used.
 ### PWM Generator
 
 ## Simulation & Experiments
+
+### Trailing edge modulation (back)
+
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/b_exp_sim.png)
+
+### Leading edge modulation (front)
+
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/f_exp_sim.png)
+
+### Centered pulses (centered)
+
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/c_exp_sim.png)
