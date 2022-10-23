@@ -50,6 +50,12 @@ To observe PWM and synchronization signals, four digital outputs are used.
 
 ### Frequency Divider
 
+Two frequency dividers modules (models) are used in project. They provide operation of the button filters and the PWM generator. 
+
+The module is based on the HDL Counter block from HDL Coder library and implements the up counter with maximum value $N-1$ where $N$ is a module of the counter.
+
+Word length of data equals $\lceil \log_{2}(N) \rceil$.
+
 ### Button Digital Filter
 
 ### Zero-Key Rollover Handler
@@ -59,6 +65,29 @@ To observe PWM and synchronization signals, four digital outputs are used.
 ### Data Generator
 
 ### PWM Generator
+
+## Data Dictionaries
+
+The project contains six data dictionaries for each component:
+- `filterDictionary.sldd` stores parameters of button filters;
+- `pulsesgenDictionary.sldd` stores parameters of zero-key rollover handler;
+- `datacounterDictionary.sldd` stores parameters of data generator;
+- `pwmgenDictionary.sldd` stores parameters of PWM generator;
+- `targetDictionary.sldd` stores parameters of FPGA;
+- `mainDictionary.sldd` is a high-level dictionary.
+
+The following parameters of the system are used (by default):
+| Parameter   | Value        | Unit |
+| ---------   | ------------ | ---- |
+| SIZE        | 5            | -    |
+| FLTR_PRD    | 0.001        | sec  |
+| PAUSE_PRD   | 1            | sec  |
+| REPEATS_PRD | 0.1          | sec  |
+| TYPE        | Types of PWM | -    |
+| PWM_FREQ    | 5e4          | Hz   |
+| CLK_FREQ    | 2e8          | Hz   |
+
+Variable TYPE is an enumeration type and has three values: FRONT, BACK, and CENTERED.
 
 ## Simulation & Experiments
 
