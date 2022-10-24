@@ -91,6 +91,25 @@ Variable TYPE is an enumeration type and has three values: FRONT, BACK, and CENT
 
 ## Simulation & Experiments
 
+In this section, you can see the results of experiments and comparison of experiments with simulation.
+
+[Virtex-6 FPGA ML605 Evaluation Kit](https://www.xilinx.com/products/boards-and-kits/ek-v6-ml605-g.html) was chosen as a target for experiments.
+
+Nine experiments were carried out:
+- three with trailing edge modulation PWM;
+- three with leading edge modulation PWM;
+- three with centered pulses PWM.
+
+Data from oscilloscope was transfered to MATLAB and processed there in order to realize appropriate comparison.
+
+In the figures at right, simulation results are depicted:
+- S - synch (yellow line);
+- P1 - the first channel of PWM (green line);
+- P2 - the second channel of PWM (blue line);
+- P3 - the third channel of PWM (red line).
+
+Black lines over them are experimental data of corresponding signal.
+
 ### Trailing edge modulation (back)
 
 ![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/b_exp_sim.png)
