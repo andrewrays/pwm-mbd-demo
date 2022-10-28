@@ -58,6 +58,16 @@ Word length of data equals $\lceil \log_{2}(N) \rceil$.
 
 ### Button Digital Filter
 
+Digital filter is used in order to filter out the glitches associated with switch transitions (debouncing). 
+
+It is implemented as a shift register with three flip-flops including one T flip-flop for considering type of action (pressing or release). If all slots of the shift register equal to 0 then release event is formed; if all slots of the shift register equal to 1 then pressing event is formed.
+
+A prescaler provides right operation frequency of the filter. The prescaler is based on filter period FLTR_PERIOD and target oscillator frequency CLK_FREQ. 
+
+Variable FLTR_PERIOD is stored in the `filterDictionary.sldd` data dictioanary. Its default value is 1 ms.
+
+The module has five instances by the number of used pushbuttons.
+
 ### Zero-Key Rollover Handler
 
 ### Pressing Mode Handler
