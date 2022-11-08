@@ -29,7 +29,7 @@ One can divide the system in three major parts:
 
 The first part includes the following algorithms:
 - Button Digital Filter (for all buttons),
-- Zero-Key Rollover Handler,
+- Rollover Handler,
 - Pressing Mode Handler.
 
 The second and the third parts are represented by Data Generator module and
@@ -68,7 +68,23 @@ Variable FLTR_PERIOD is stored in the `filterDictionary.sldd` data dictioanary. 
 
 The module has five instances by the number of used pushbuttons.
 
-### Zero-Key Rollover Handler
+### Rollover Handler
+
+The model includes a rollover handler module which allows to correctly process several simultaneous buttonstrokes. 
+
+Only one button can be pressed at the same time. If any two o more buttons are pressed together then pressing event is not formed.
+
+Permission generator function is a core of the algorithm. It generates variable `permit` as follows:
+
+```matlab
+permit = (~button_up & ~button_down & ~button_reset & ~button_next & button_previous)  | ...
+         (~button_up & ~button_down & ~button_reset & button_next  & ~button_previous) | ...
+         (~button_up & ~button_down & button_reset  & ~button_next & ~button_previous) | ...
+         (~button_up & button_down  & ~button_reset & ~button_next & ~button_previous) | ...
+         (button_up  & ~button_down & ~button_reset & ~button_next & ~button_previous);
+```
+
+Then logical conjunction applies to this variable and corresponding button. For instance, `o_button_up = permit & i_button_up`.
 
 ### Pressing Mode Handler
 
