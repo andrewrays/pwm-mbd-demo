@@ -88,6 +88,14 @@ Then logical conjunction applies to this variable and corresponding button. For 
 
 ### Pressing Mode Handler
 
+Pressing mode handler processes user's pressing style. It supports single-pressing and continuous-pressing modes. 
+
+Core of the algorithm is a state machine which generates pulses when Up or Down button is pressed. It has three states: IDLE, PAUSE, and REPEATS. When signle-pressing event occurs, a pulse is generated. When user does not stop pressing one of the abovementioned button (continuous-pressing), then algorithm takes a pause duration of which is determined by the parameter PAUSE_PRD. If during the pause user does not stop pressing, algorithm starts to generate pulses with at regular intervals, duration of the interval is determined by the parameter REPEATS_PRD. After user stops pressing, state machine goes to IDLE state.
+
+Then logical conjunction applies to the pulse and corresponding button. For instance, `o_button_up = pulse & i_button_up`.
+
+All parameters of the handler are stored in `pulsesgenDictionary.sldd` data dictionary.
+
 ### Data Generator
 
 ### PWM Generator
@@ -96,7 +104,7 @@ Then logical conjunction applies to this variable and corresponding button. For 
 
 The project contains six data dictionaries for each component:
 - `filterDictionary.sldd` stores parameters of button filters;
-- `pulsesgenDictionary.sldd` stores parameters of zero-key rollover handler;
+- `pulsesgenDictionary.sldd` stores parameters of pressing mode handler;
 - `datacounterDictionary.sldd` stores parameters of data generator;
 - `pwmgenDictionary.sldd` stores parameters of PWM generator;
 - `targetDictionary.sldd` stores parameters of FPGA;
