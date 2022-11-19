@@ -98,7 +98,19 @@ All parameters of the handler are stored in `pulsesgenDictionary.sldd` data dict
 
 ### Data Generator
 
+Data generator module forms duty cycles for all three channel. It consists of two state machines.
+
+The first selects PWM channel using NEXT and PREVIOUS button. It has closed-loop structure with three states: FIRST (default state), SECOND, and THIRD. Every state is responsible for corresponding channel. If state machine is in FIRST state then the first channel is currently active, and so on. The states switch in the following sequence: FIRST -> SECOND -> THIRD -> FIRST (forward direction) and FIRST -> THIRD -> SECOND -> FIRST (inverse direction).
+
+The second state machine forms duty cycles according to PWM channel using UP, DOWN, and RESET buttons. It has three states: IDLE (default state), UP, and DOWN. When state machine is in IDLE state then all duty cycles (duty cycles for all channels) are equal to zero. When UP button is pressed, summative counter of corresponding channel starts to work until counter limit is reached. Otherwise, when DOWN button is pressed, subtractive counter corresponding channel starts to work until zero is reached. When RESET button is pressed then state machine goes to IDLE state.
+
+The module has one parameter - counter size - with which one can set PWM size. Default value is 5 bits. It is stored in `datacounterDictionary.sldd` data dictionary.
+
 ### PWM Generator
+
+PWM generator module generates PWM signals using duty cycles. It is based on counter-comparing operation. In the module, there are three types of counters in accordance with PWM type: summative (FRONT type), subtractive (BACK type), and reversed (CENTERED type). Each of them has three outputs: current counter value, synch condition, and end-of-period flag. Synch condition generates signal relative to which PWM signal aligns, end-of-period flag tells algorithm when it is necessary to load new duty cycle data from the data generator module. 
+
+PWM type and PWM frequency parameters are stored in `pwmgenDictionary.sldd` data dictionary. It is worth to note that all three PWM signals has the same frequency.
 
 ## Data Dictionaries
 
