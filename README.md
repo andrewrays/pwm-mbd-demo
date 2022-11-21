@@ -158,12 +158,12 @@ Black lines over them are experimental data of corresponding signal.
 
 ### Trailing edge modulation (back)
 
-![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/b_exp_sim.png)
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/main/images/b_exp_sim.png)
 
 ### Leading edge modulation (front)
 
-![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/f_exp_sim.png)
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/main/images/f_exp_sim.png)
 
 ### Centered pulses (centered)
 
-![](https://github.com/andrewrays/pwm-mbd-demo/blob/automate_tests/images/c_exp_sim.png)
+![](https://github.com/andrewrays/pwm-mbd-demo/blob/main/images/c_exp_sim.png)
