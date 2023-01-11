@@ -5,7 +5,7 @@ load_system(ModelName);
 
 sltest.harness.load(ModelName, HarnessName);
 
-if ~exist(Directory, 'dir')
+if ~exist(['..\pwm-mbd-demo\work\' Directory], 'dir')
     mkdir('..\pwm-mbd-demo\work\', Directory);
 end
 

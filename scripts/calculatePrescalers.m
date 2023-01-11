@@ -9,6 +9,10 @@ CNT_MAX = 2^Data.SIZE - 2;
 switch bdroot
     case 'pwm_generator_harness'
         Data.TYPE = get_param('pwm_generator_harness/DUT/counters/PWM_TYPE', 'Value');
+    case 'main_model_harness'
+        Data.TYPE = get_param('main_model_harness/DUT/pwm_generator/counters/PWM_TYPE', 'Value');
+    otherwise
+        Data.TYPE = 'TYPE.CENTERED';
 end
 
 if strcmp(Data.TYPE,'TYPE.CENTERED'), K = 2;
